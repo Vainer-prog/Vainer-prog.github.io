@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Таймер города</title>
+    <title>Онлайн чат</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>Выберите город</h1>
-    <form>
-      <select name="city" id="city-select">
-        <option value="london">Лондон</option>
-        <option value="moscow">Москва</option>
-        <option value="new-york">Нью-Йорк</option>
-        <option value="tokyo">Токио</option>
-      </select>
-      <button type="submit">Показать время</button>
-    </form>
-    <div id="timer"></div>
+    <div class="chat-container">
+      <div class="chat-header">
+        <h2>Онлайн чат</h2>
+      </div>
+      <div class="chat-history"></div>
+      <div class="chat-message-container">
+        <input type="text" id="message-input" placeholder="Введите сообщение...">
+        <button id="send-button">Отправить</button>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
