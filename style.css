@@ -1,41 +1,24 @@
-.chat-container {
-  width: 400px;
-  height: 500px;
-  margin: 50px auto;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
+#game {
+  width: 600px;
+  height: 200px;
+  background-color: #f7f7f7;
+  position: relative;
 }
 
-.chat-header {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  text-align: center;
+#dinosaur {
+  width: 40px;
+  height: 60px;
+  background-color: #555;
+  position: absolute;
+  bottom: 0;
+  left: 50px;
 }
 
-.chat-history {
-  flex-grow: 1;
-  padding: 10px;
-  overflow-y: scroll;
-}
-
-.chat-message-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-#message-input {
-  flex-grow: 1;
-  margin-right: 10px;
-}
-
-#send-button {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
+#cactus {
+  width: 20px;
+  height: 50px;
+  background-color: #888;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
