@@ -1,42 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Загрузка видео с YouTube</title>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('form').submit(function(event) {
-				event.preventDefault(); // Отменяем стандартное поведение формы
-				var url = $('#url').val();
-				var quality = $('#quality').val();
-				$.ajax({
-					url: 'download.php',
-					type: 'POST',
-					data: {url: url, quality: quality},
-					success: function(response) {
-						$('#result').html(response);
-					}
-				});
-			});
-		});
-	</script>
+    <meta charset="utf-8">
+    <title>Скачать видео с YouTube</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<h1>Загрузка видео с YouTube</h1>
-	<form>
-		<label for="url">Введите URL-адрес видео:</label>
-		<input type="text" name="url" id="url">
-		<br>
-		<label for="quality">Выберите качество видео:</label>
-		<select name="quality" id="quality">
-			<option value="best">Лучшее</option>
-			<option value="hd720">Высокое</option>
-			<option value="medium">Среднее</option>
-			<option value="small">Низкое</option>
-		</select>
-		<br>
-		<input type="submit" value="Загрузить">
-	</form>
-	<div id="result"></div>
+    <div class="container">
+        <h1>Скачать видео с YouTube</h1>
+        <input id="url" type="text" placeholder="Вставьте ссылку на видео">
+        <div class="quality">
+            <label>
+                <input type="radio" name="quality" value="360p" checked>
+                360p
+            </label>
+            <label>
+                <input type="radio" name="quality" value="720p">
+                720p
+            </label>
+            <label>
+                <input type="radio" name="quality" value="1080p">
+                1080p
+            </label>
+        </div>
+        <button id="download-btn">Скачать видео</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
