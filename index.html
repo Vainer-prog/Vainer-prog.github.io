@@ -1,30 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Скачать видео с YouTube</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Скачать видео с YouTube</h1>
-        <input id="url" type="text" placeholder="Вставьте ссылку на видео">
-        <div class="quality">
-            <label>
-                <input type="radio" name="quality" value="360p" checked>
-                360p
-            </label>
-            <label>
-                <input type="radio" name="quality" value="720p">
-                720p
-            </label>
-            <label>
-                <input type="radio" name="quality" value="1080p">
-                1080p
-            </label>
-        </div>
-        <button id="download-btn">Скачать видео</button>
-    </div>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Таймер города</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h1>Выберите город</h1>
+    <form>
+      <select id="city-select">
+        <option value="london">Лондон</option>
+        <option value="moscow">Москва</option>
+        <option value="new-york">Нью-Йорк</option>
+        <option value="tokyo">Токио</option>
+      </select>
+      <button type="submit">Показать время</button>
+    </form>
+    <div id="timer"></div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
