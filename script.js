@@ -1,40 +1,42 @@
-const dinosaur = document.getElementById("dinosaur");
-const cactus = document.getElementById("cactus");
+// Токен доступа к Google Sheets API
+const SHEET_TOKEN = 'AIzaSyA6kKS7TQOor0NNEeJbsCzzoTnfczX9FT8'; 
 
-document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
-    jump();
-  }
+// ID таблицы Google Sheets для записи данных
+const SHEET_ID = '1bB7k9FwNd6Iyu2EmIOketZiRxxMdatfLQYyWl5cjKMs';
+
+// Показываем только первый вопрос
+document.getElementById('question1').style.display = 'block';
+
+// Переход к следующему вопросу
+const nextButtons = document.querySelectorAll('[id^=next]');
+
+nextButtons.forEach(button => {
+
+  button.addEventListener('click', () => {
+    // Код перехода к следующему вопросу   
+  });
+
 });
 
-function jump() {
-  let position = 0;
-  let timerId = setInterval(() => {
-    if (position === 150) {
-      clearInterval(timerId);
-      let downTimerId = setInterval(() => {
-        if (position === 0) {
-          clearInterval(downTimerId);
-        }
-        position -= 10;
-        dinosaur.style.bottom = position + "px";
-      }, 20);
-    }
-    position += 10;
-    dinosaur.style.bottom = position + "px";
-  }, 20);
+
+// Сохранение ответов в Google Sheet
+function saveAnswer(questionId, answer) {
+
+  // Добавляем новую строку в таблицу
+  fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1:append?valueInputOption=USER_ENTERED`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${SHEET_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      range: 'Sheet1',
+      majorDimension: 'ROWS',
+      values: [[questionId, answer]]
+    })
+  });
+
 }
 
-let isAlive = setInterval(() => {
-  let dinosaurBottom = parseInt(
-    window.getComputedStyle(dinosaur).getPropertyValue("bottom")
-  );
-  let cactusLeft = parseInt(
-    window.getComputedStyle(cactus).getPropertyValue("left")
-  );
-
-  if (cactusLeft < 50 && cactusLeft > 0 && dinosaurBottom <= 60) {
-    alert("Game over!");
-    clearInterval(isAlive);
-  }
-}, 10);
+// Отправка формы 
+// ...
