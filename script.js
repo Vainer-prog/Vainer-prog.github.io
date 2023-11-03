@@ -1,42 +1,69 @@
-// Токен доступа к Google Sheets API
-const SHEET_TOKEN = 'AIzaSyA6kKS7TQOor0NNEeJbsCzzoTnfczX9FT8'; 
+// Загружаем промокоды из файла data.txt
+const promocodes = [];
+fetch('data.txt')
+  .then(response => response.text())
+  .then(text => {
+    const lines = text.split('\n');
+    lines.forEach(line => {
+      const [promocode, image, link] = line.split('|');
+      promocodes.push({
+        promocode,
+        image,
+        link
+      });
+    });
+  })
+  .then(() => {
+    // Создаем рамки для промокодов
+    promocodes.forEach((promocode, index) => {
+      const promocodeElement = document.createElement('div');
+      promocodeElement.classList.add('promocode');
+      promocodeElement.id = `promocode-${index + 1}`;
 
-// ID таблицы Google Sheets для записи данных
-const SHEET_ID = '1bB7k9FwNd6Iyu2EmIOketZiRxxMdatfLQYyWl5cjKMs';
+      // Добавляем кнопку "Показать промокод"
+      const showPromocodeButton = document.createElement('button');
+      showPromocodeButton.classList.add('show-promocode');
+      showPromocodeButton.textContent = 'Показать промокод';
+      showPromocodeButton.addEventListener('click', () => {
+        promocodeElement.querySelector('.promocode-content').style.display = 'block';
+      });
+      promocodeElement.appendChild(showPromocodeButton);
 
-// Показываем только первый вопрос
-document.getElementById('question1').style.display = 'block';
+      // Добавляем содержимое промокода
+      const promocodeContentElement = document.createElement('div');
+      promocodeContentElement.classList.add('promocode-content');
 
-// Переход к следующему вопросу
-const nextButtons = document.querySelectorAll('[id^=next]');
+      const promocodeHeadingElement = document.createElement('h2');
+      promocodeHeadingElement.textContent = promocode.promocode;
+      promocodeContentElement.appendChild(promocodeHeadingElement);
 
-nextButtons.forEach(button => {
+      const promocodeParagraphElement = document.createElement('p');
+      promocodeParagraphElement.textContent = promocode.image;
+      promocodeContentElement.appendChild(promocodeParagraphElement);
 
-  button.addEventListener('click', () => {
-    // Код перехода к следующему вопросу   
+      const promocodeImageElement = document.createElement('img');
+      promocodeImageElement.src = promocode.link;
+      promocodeContentElement.appendChild(promocodeImageElement);
+
+      // Добавляем кнопку "Скопировать промокод"
+      const copyPromocodeButton = document.createElement('button');
+      copyPromocodeButton.classList.add('copy-promocode');
+      copyPromocodeButton.textContent = 'Скопировать промокод';
+      copyPromocodeButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(promocode.promocode);
+      });
+      promocodeContentElement.appendChild(copyPromocodeButton);
+
+      // Добавляем кнопку "Использовать промокод"
+      const usePromocodeButton = document.createElement('a');
+      usePromocodeButton.classList.add('use-promocode');
+      usePromocodeButton.textContent = 'Использовать промокод';
+      usePromocodeButton.href = promocode.link;
+      usePromocodeButton.target = '_blank';
+      promocodeContentElement.appendChild(usePromocodeButton);
+
+      promocodeElement.appendChild(promocodeContentElement);
+
+      document.querySelector('.promocodes').appendChild(promocodeElement);
+    });
   });
-
-});
-
-
-// Сохранение ответов в Google Sheet
-function saveAnswer(questionId, answer) {
-
-  // Добавляем новую строку в таблицу
-  fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Sheet1:append?valueInputOption=USER_ENTERED`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${SHEET_TOKEN}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      range: 'Sheet1',
-      majorDimension: 'ROWS',
-      values: [[questionId, answer]]
-    })
-  });
-
-}
-
-// Отправка формы 
-// ...
