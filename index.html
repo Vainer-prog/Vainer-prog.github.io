@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>Mineland Coding</title>
-  
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>ForgePromo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="logo.png">
 </head>
 <body>
-
-  <div class="container">
-
-    <h1>Mineland Coding</h1>
-    
-    <p>Пожалуйста, ответьте на несколько вопросов. Ваши ответы будут сохранены в файл для анализа.</p>
-    
-    <div id="question1" class="question">
-      <h2>Вопрос 1</h2>
-      <p>Ваш ник?</p>
-      <input type="text" id="answer1">
-      <button id="next1">Далее</button>
+  <header>
+    <div class="container">
+      <a href="/"><img src="logo.png" alt="ForgePromo"></a>
+      <h1>ForgePromo</h1>
     </div>
-
-    <div id="question2" class="question">
-      <h2>Вопрос 2</h2>
-      <p>Какой код вас интересует?</p>
-      <input type="text" id="answer2">
-      <button id="next2">Далее</button>
+  </header>
+  <main>
+    <div class="promocodes">
+      <div class="promocode" id="promocode-1">
+        <button class="show-promocode">Показать промокод</button>
+        <div class="promocode-content">
+          <h2>Промокод 1</h2>
+          <p>Скидка 10% на все товары</p>
+          <img src="image-1.png" alt="Изображение для промокода 1">
+          <button class="copy-promocode">Скопировать промокод</button>
+          <a href="https://www.example.com/" class="use-promocode">Использовать промокод</a>
+        </div>
+      </div>
+      <div class="promocode" id="promocode-2">
+        <button class="show-promocode">Показать промокод</button>
+        <div class="promocode-content">
+          <h2>Промокод 2</h2>
+          <p>Бесплатная доставка</p>
+          <img src="image-2.png" alt="Изображение для промокода 2">
+          <button class="copy-promocode">Скопировать промокод</button>
+          <a href="https://www.example.com/" class="use-promocode">Использовать промокод</a>
+        </div>
+      </div>
+      </div>
+  </main>
+  <footer>
+    <div class="container">
+      <p>Copyright &copy; 2023 ForgePromo</p>
     </div>
-
-    <div id="question3" class="question">
-      <h2>Вопрос 3</h2>
-      <p>Сколько вы готовы заплатить (в золоте)?</p>  
-      <input type="number" id="answer3">
-      <button id="submit">Отправить</button>
-    </div>
-
-  </div>
-  
-  <script src="script.js"></script>
+  </footer>
 </body>
 </html>
